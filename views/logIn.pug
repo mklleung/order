@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  body.bc
+  .container.deisBlue
+    br
+    h1.fontCenter.white.bold Louis' Deli
+    p.fontCenter.white Online order form for students
+    p.fontCenter.white *Log in Page
+    br
+  br
+  .logInContainer
+    h2.deisBlueFont.underline.bold(style='text-align:center') Log In
+    br
+    form(action='/')
+    .row
+      //h2(style='text-align:center') Log In
+      .vl
+        span.vl-innertext or
+      .col
+        p.underline.deisBlueFont Student
+        input(type='text' name='username' placeholder='Username' required='')
+        br
+        input(type='password' name='password' placeholder='Password' required='')
+        br
+        br
+        input(type='submit' value='Login')
+        br
+      .col
+        p.underline.deisBlueFont Staff
+        input(type='text' name='username' placeholder='Username' required='')
+        br
+        input(type='password' name='password' placeholder='Password' required='')
+        br
+        br
+        input(type='submit' value='Login')
+    br
+    br
+    br
+    br
+    .bottom-container
+      .row
+        .col
+          a.btn(href='#' style='color:white') Sign up
+        .col
+          a.btn(href='#' style='color:white') Forgot password?

@@ -1,0 +1,181 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.bc{
+  background-color: white;
+}
+
+.deisBlue{
+  background-color: #1B4164;
+}
+.deisBlueFont{
+  color: #1B4164;
+}
+.white{
+  color: white;
+}
+
+.lightGrey{
+  background-color: lightGrey;
+}
+
+.fontCenter{
+  text-align: center;
+}
+
+.fancy{
+  font-family: fantasy;
+}
+
+.containerBorder{
+  border-color: black;
+}
+
+.container-small {
+  width: 300px;
+  left: 100px;
+}
+
+.column{
+  column-count: 2;
+}
+
+.underline{
+  text-decoration: underline;
+}
+
+.bold{
+  font-weight: bold;
+}
+.proportion{
+  width: 100%;
+  height: auto;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even){background-color: white}
+
+
+.sidenav {
+height: 100%;
+width: 0;
+position: fixed;
+z-index: 1;
+top: 0;
+left: 0;
+background-color: #18395C;
+overflow-x: hidden;
+transition: 0.5s;
+padding-top: 60px;
+}
+.sidenav a {
+padding: 8px 8px 8px 32px;
+text-decoration: none;
+font-size: 25px;
+color: #FFFFFF;
+display: block;
+transition: 0.3s;
+}
+.sidenav a:hover {
+color: #f1f1f1;
+}
+.sidenav .closebtn {
+position: absolute;
+top: 0;
+right: 25px;
+font-size: 36px;
+margin-left: 50px;
+}
+@media screen and (max-height: 450px) {
+.sidenav {padding-top: 15px;}
+.sidenav a {font-size: 18px;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* style the container */
+.logInContainer {
+position: relative;
+border-radius: 5px;
+//background-color: #f2f2f2;
+padding: 20px 0 30px 0;
+}
+
+/* Two-column layout */
+.col {
+float: left;
+width: 50%;
+margin: auto;
+padding: 0 50px;
+margin-top: 6px;
+}
+/* Clear floats after the columns */
+.row:after {
+content: "";
+display: table;
+clear: both;
+}
+/* vertical line */
+.vl {
+position: absolute;
+left: 50%;
+transform: translate(-50%);
+border: 2px solid #ddd;
+height: 175px;
+}
+/* text inside the vertical line */
+.vl-innertext {
+position: absolute;
+top: 50%;
+transform: translate(-50%, -50%);
+background-color: #f1f1f1;
+border: 1px solid #ccc;
+border-radius: 50%;
+padding: 8px 10px;
+}
+/* hide some text on medium and large screens */
+.hide-md-lg {
+display: none;
+}
+/* bottom container */
+.bottom-container {
+text-align: center;
+background-color: #1B4164;
+border-radius: 0px 0px 4px 4px;
+}
+/* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 650px) {
+.col {
+width: 100%;
+margin-top: 0;
+}
+/* hide the vertical line */
+.vl {
+display: none;
+}
+/* show the hidden text on small screens */
