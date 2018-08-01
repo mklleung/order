@@ -1,7 +1,7 @@
 'use strict';
 const mongoose = require( 'mongoose' );
 
-var orderSchema = mongoose.Schema( {
+var activeOrderSchema = mongoose.Schema( {
   customer: String,
   email: String,
   sandwich: String,
@@ -11,4 +11,4 @@ var orderSchema = mongoose.Schema( {
   condiments: String
 } );
 
-module.exports = mongoose.model( 'order', orderSchema );
+module.exports = mongoose.model( 'activeOrder', activeOrderSchema );
