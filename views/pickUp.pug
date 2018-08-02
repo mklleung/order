@@ -12,18 +12,9 @@ block content
   br
   .container.deisBlue
     br
-    h1.fontCenter.white.bold.underline Orders In Progress
+    h1.fontCenter.white.bold.underline Pick Up
     br
-    h3.white.underline Model Guide:
-    table.white
-      tr
-        th Sandwich
-        th Hot Dog
-        th Bread
-        th Toppings
-        th Condiments
-    br
-    form(method="post" action="moveOrderPickUp")
+    form(method="post" action="completeOrder")
       ol.white
         each m in activeOrder
           li
@@ -36,6 +27,7 @@ block content
                 th #{m.bread}
                 th #{m.toppings}
                 th #{m.condiments}
+            //e #{m.customer} | #{m.email} | #{m.sandwich} | #{m.hotdog} | #{m.bread} | #{m.toppings} | #{m.condiments}
             br
           br
         input(type="submit")

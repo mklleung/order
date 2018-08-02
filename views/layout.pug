@@ -14,28 +14,13 @@ html(lang="en")
     #mySidenav.sidenav
       a.closebtn(href='javascript:void(0)' onclick='closeNav()') &times;
       h1.underline.white Louis' Deli
-      a(href="/") Ordering
-      a(href="/Orders") Orders
+      a(href="/orderForm") Ordering
+      a(href="/inProgress") Orders
+      a(href="/pickUp") Pick Up
       a(href="/completedOrders") Completed Orders
       a(href='/orderNumber') Order Number
-      if loggedIn
-        a(href='/logout') Log Out
-      else
-        a(href='/logIns') Log In
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
+      a(href='/logout') Log Out
+      a(href='/logIns') Log In
       br
       br
       br

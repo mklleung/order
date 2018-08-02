@@ -12,7 +12,6 @@ const
   usersRouter = require('./routes/users');
   orderNumberRouter = require('./routes/orderNumber');
   ordersRouter = require('./routes/orders');
-  completedOrdersRouter = require('./routes/completedOrders');
   logInController = require('./controllers/logInController');
   activeOrderController = require('./controllers/activeOrderController');
 
@@ -53,12 +52,21 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/orderNumber', orderNumberRouter);
 app.use('/orders', ordersRouter);
-app.use('/completedOrders', completedOrdersRouter);
 
 app.get('/inProgress',
     activeOrderController.getAllActiveOrder,
     (req, res) => {
         res.render('inProgress')
+      });
+app.get('/pickUp',
+    activeOrderController.getAllReadyOrders,
+    (req, res) => {
+        res.render('pickUp')
+      });
+app.get('/completedOrders',
+    activeOrderController.terminatedOrders,
+    (req, res) => {
+        res.render('completedOrders')
       });
 
 app.get('/orderForm', function(req, res) {
@@ -68,6 +76,8 @@ app.get('/orderForm', function(req, res) {
         });
     });
 app.post('/saveActiveOrder',activeOrderController.saveActiveOrder );
+app.post('/moveOrderPickUp',activeOrderController.moveOrderPickUp );
+app.post('/completeOrder',activeOrderController.completeOrder );
 
 app.use((req,res,next) => {
   res.locals.loggedIn = false
@@ -75,6 +85,7 @@ app.use((req,res,next) => {
     console.log("user has been Authenticated")
     res.locals.user = req.user
     res.locals.loggedIn = true
+    console.log("Thjis is the thing:" + res.locals.loggedIn)
     if (req.user) {
       if (req.user.googleemail=='michaelleung360@gmail.com') {
         console.log("admin has logged in")
