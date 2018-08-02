@@ -17,8 +17,11 @@ html(lang="en")
       a(href="/") Ordering
       a(href="/Orders") Orders
       a(href="/completedOrders") Completed Orders
-      a(href='/logIn') Log In
       a(href='/orderNumber') Order Number
+      if loggedIn
+        a(href='/logout') Log Out
+      else
+        a(href='/logIns') Log In
       br
       br
       br

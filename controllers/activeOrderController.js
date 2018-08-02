@@ -13,7 +13,7 @@ exports.getAllActiveOrder = ( req, res ) => {
   ActiveOrder.find( {} )
     .exec()
     .then( ( activeOrder ) => {
-      res.render( 'activeOrder', {
+      res.render( 'inProgress', {
         activeOrder: activeOrder
       } );
     } )
@@ -27,7 +27,7 @@ exports.getAllActiveOrder = ( req, res ) => {
 };
 
 
-
+/*
 
  exports.attachActiveOrder = ( req, res, next ) => {
   console.log('in attachActiveOrder')
@@ -45,7 +45,7 @@ exports.getAllActiveOrder = ( req, res ) => {
       console.log( 'members promise complete' );
     } );
  };
-
+*/
 
 
 exports.saveActiveOrder = ( req, res ) => {
@@ -74,7 +74,7 @@ exports.saveActiveOrder = ( req, res ) => {
 };
 
 
-
+/*
 
 
 exports.deleteActiveOrder = (req, res) => {
@@ -98,3 +98,4 @@ exports.deleteActiveOrder = (req, res) => {
     res.send(`unknown orderName: ${orderName}`)
    }
 };
+*/

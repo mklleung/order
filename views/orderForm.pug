@@ -1,0 +1,203 @@
+extends layout
+
+block content
+  body.bc
+  .container.deisBlue
+    br
+    h1.fontCenter.white.bold Louis' Deli
+    p.fontCenter.white Online order form for students
+    p.fontCenter.white *Orders are made first come first serve
+    br
+  .container
+    br
+    br
+    img.proportion(src ='/images/deli.jpg')
+    br
+    br
+  .container.deisBlue
+    br
+    h1.white.fontCenter Meal Exchange Sandwiches and Hot Dogs are in Bold
+    br
+  .container
+    br
+    br
+    h2.underline Sandwiches
+    form(method="post" action="saveActiveOrder")
+      .container.column
+        li.bold
+          input(type='checkbox' name='sandwich' value='Turkey')
+          |  Turkey $6.99 | 410 cal.
+        li.bold
+          input(type='checkbox' name='sandwich' value='Bologna')
+          |  Bologna $5.99 | 370 cal.
+        li.bold
+          input(type='checkbox' name='sandwich' value='Salami')
+          |  Salami $6.99 | 410 cal.
+        li.bold
+          input(type='checkbox' name='sandwich' value='Chicken Salad')
+          |  Chicken Salad $5.99 | 310 cal.
+        li.bold
+          input(type='checkbox' name='sandwich' value='Roast Beef')
+          |  Roast Beef $6.99 | 320 cal.
+        li.bold
+          input(type='checkbox' name='sandwich' value='Tuna Salad')
+          |  Tuna Salad $5.99 | 280 cal.
+        li
+          input(type='checkbox' name='sandwich' value='Hot Corned Beef')
+          |  Hot Corned Beef $8.99 | 370 cal.
+        li
+          input(type='checkbox' name='sandwich' value='Cold Corned Beef')
+          |  Cold Corned Beef $8.99 | 370 cal.
+        li
+          input(type='checkbox' name='sandwich' value='Hot Pastrami')
+          |  Hot Pastrami $8.99 | 360 cal.
+        li
+          input(type='checkbox' name='sandwich' value='Cold Pastrami')
+          |  Cold Pastrami $8.99 | 360 cal.
+        li
+          input(type='checkbox' name='sandwich' value='Schnitzel')
+          |  Schnitzel $7.99 | 370 cal.
+        li
+          input(type='checkbox' name='sandwich' value='None' checked='checked')
+          |  None
+      br
+      br
+      h2.underline Hot Dog
+      .container.column
+        li.bold
+          input(type='checkbox' name='hotdog' value='Sherman Dog')
+          |  Sherman Dog $3.99 | 410 cal.
+        li.bold
+          input(type='checkbox' name='hotdog' value='Usdan Dog')
+          |  Usdan Dog $3.99 | 520 cal.
+        li.bold
+          input(type='checkbox' name='hotdog' value='Deis Chili Dog')
+          |  Deis Chili Dog $4.09 | 690 cal.
+        li.bold
+          input(type='checkbox' name='hotdog' value='U Dog Salad')
+          |  U Dog Salad $4.09 | 470 cal.
+        li.bold
+          input(type='checkbox' name='hotdog' value='Justice Vegan Dog Beef')
+          |  Justice Vegan Dog Beef $2.99 | 320 cal.
+        li
+          input(type='checkbox' name='hotdog' value='None' checked='checked')
+          |  None
+      br
+      br
+      h2.underline Bread (120 cal. - 180 cal.)
+      .container.column
+        li
+          input(type='checkbox' name='bread' value='Pumpernickel')
+          |  Pumpernickel
+        li
+          input(type='checkbox' name='bread' value='Marble')
+          |  Marble
+        li
+          input(type='checkbox' name='bread' value='Egg Roll')
+          |  Egg Roll
+        li
+          input(type='checkbox' name='bread' value='Gluten Free Bread')
+          |  Gluten Free Bread
+        li
+          input(type='checkbox' name='bread' value='Onion Roll')
+          |  Onion Roll
+        li
+          input(type='checkbox' name='bread' value='Wrap')
+          |  Wrap
+        li
+          input(type='checkbox' name='bread' value='Focaccia')
+          |  Focaccia
+        li
+          input(type='checkbox' name='bread' value='Challah')
+          |  Challah
+        li
+          input(type='checkbox' name='bread' value='Sour Dough')
+          |  Sour Dough
+        li
+          input(type='checkbox' name='bread' value='Brioche')
+          |  Brioche
+        li
+          input(type='checkbox' name='bread' value='Rye')
+          |  Rye
+        li
+          input(type='checkbox' name='bread' value='None' checked='checked')
+          |  None
+      br
+      br
+      h2.underline Toppings (10 cal. - 85 cal.)
+      h3 Meal exchange please select 2 toppings
+      .container.column
+        li
+          input(type='checkbox' name='toppings' value='Red Onion')
+          |  Red Onion
+        li
+          input(type='checkbox' name='toppings' value='Honey Roasted Onion')
+          |  Honey Roasted Onion
+        li
+          input(type='checkbox' name='toppings' value='Tomato')
+          |  Tomato
+        li
+          input(type='checkbox' name='toppings' value='Lettuce')
+          |  Lettuce
+        li
+          input(type='checkbox' name='toppings' value='Cucumber')
+          |  Cucumber
+        li
+          input(type='checkbox' name='toppings' value='Banana Peppers')
+          |  Banana Peppers
+        li
+          input(type='checkbox' name='toppings' value='Roasted Veggies')
+          |  Roasted Veggies
+        li
+          input(type='checkbox' name='toppings' value='Sauerkraut')
+          |  Sauerkraut
+        li
+          input(type='checkbox' name='toppings' value='None' checked='checked')
+          |  None
+      br
+      br
+      h2.underline Condiments (3 cal. - 90 cal.)
+      .container.column
+        li
+          input(type='checkbox' name='condiments' value='Mustard')
+          |  Mustard
+        li
+          input(type='checkbox' name='condiments' value='Ketchup')
+          |  Ketchup
+        li
+          input(type='checkbox' name='condiments' value='Mayonnaise')
+          |  Mayonnaise
+        li
+          input(type='checkbox' name='condiments' value='Deli Mustard')
+          |  Deli Mustard
+        li
+          input(type='checkbox' name='condiments' value='Thousand Island')
+          |  Thousand Island
+        li
+          input(type='checkbox' name='condiments' value='Horseradish Aioli')
+          |  Horseradish Aioli
+        li
+          input(type='checkbox' name='condiments' value='Cranberry Aioli')
+          |  Cranberry Aioli
+        li
+          input(type='checkbox' name='condiments' value='Basil Roasted Garlic Olive Oil')
+          |  Basil Roasted Garlic Olive Oil
+        li
+          input(type='checkbox' name='condiments' value='Chipotle Aioli')
+          |  Chipotle Aioli
+        li
+          input(type='checkbox' name='condiments' value='None' checked='checked')
+          |  None
+      br
+      br
+      input(type="text" name="customer" readonly="true," value=user.googlename)
+      br
+      input(type="text" name="email" readonly="true," value=user.googleemail)
+      br
+      input(type="submit")
+    br
+    br
+  .container.deisBlue
+    br
+    h1.white.fontCenter Meal Exchange Includes your Choice of Chips and Canned Soda or Water
+    br
