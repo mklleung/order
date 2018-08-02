@@ -126,8 +126,8 @@ exports.saveActiveOrder = ( req, res ) => {
 
   newOrder.save()
     .then( () => {
-      console.log("redirecting to members")
-      res.redirect( '/orderForm' );
+      console.log("redirecting to thank you")
+      res.redirect( '/thankyou' );
     } )
     .catch( error => {
       res.send( error );

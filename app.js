@@ -10,7 +10,7 @@ const
 
   indexRouter = require('./routes/index');
   usersRouter = require('./routes/users');
-  orderNumberRouter = require('./routes/orderNumber');
+  thankyouRouter = require('./routes/thankyou');
   ordersRouter = require('./routes/orders');
   logInController = require('./controllers/logInController');
   activeOrderController = require('./controllers/activeOrderController');
@@ -50,7 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/orderNumber', orderNumberRouter);
+app.use('/thankyou', thankyouRouter);
 app.use('/orders', ordersRouter);
 
 app.get('/inProgress',
