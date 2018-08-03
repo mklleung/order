@@ -10,7 +10,8 @@ var activeOrderSchema = mongoose.Schema( {
   toppings: String,
   condiments: String,
   status: String,
-  date: String
+  date: String,
+  time: String
 } );
 
 module.exports = mongoose.model( 'activeOrder', activeOrderSchema );

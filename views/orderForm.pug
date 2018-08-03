@@ -187,8 +187,9 @@ block content
           |  None
       br
       br
-      p#date
       input(type="text" name="date" readonly="true," id='theDate')
+      br
+      input(type="text" name="time" readonly="true," id='theTime')
       br
       e Status:
       input(type="text" name="status" readonly="true," value='Active')
@@ -213,3 +214,10 @@ block content
     if (day < 10) day = "0" + day;
     var today = month + "/" + day + "/" + year;
     document.getElementById("theDate").value = today;
+
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var time = hour + ":" + minute;
+    if (hour < 10) hour = "0" + hour;
+    if (minute < 10) minute = "0" + minute;
+    document.getElementById("theTime").value = time;

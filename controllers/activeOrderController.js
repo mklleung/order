@@ -121,6 +121,7 @@ exports.saveActiveOrder = ( req, res ) => {
     condiments: req.body.condiments,
     status: req.body.status,
     date: req.body.date,
+    time: req.body.time
   } )
   console.log("after the let newOrder")
   console.log("newOrder = "+ newOrder)
