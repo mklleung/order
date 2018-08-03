@@ -187,6 +187,9 @@ block content
           |  None
       br
       br
+      p#date
+      input(type="text" name="date" readonly="true," id='theDate')
+      br
       e Status:
       input(type="text" name="status" readonly="true," value='Active')
       br
@@ -201,3 +204,12 @@ block content
     br
     h1.white.fontCenter Meal Exchange Includes your Choice of Chips and Canned Soda or Water
     br
+  script.
+    var date = new Date();
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
+    var today = month + "/" + day + "/" + year;
+    document.getElementById("theDate").value = today;

@@ -3,7 +3,7 @@ const ActiveOrder = require( '../models/ActiveOrder' );
 console.log("loading the ActiveOrder Controller")
 
 exports.renderorder = ( req, res ) => {
-  res.render( 'order');
+  res.render( 'order', { title: 'Order-Platform' });
 };
 
 //This gets all the orders that still need to be made
@@ -119,7 +119,8 @@ exports.saveActiveOrder = ( req, res ) => {
     bread: req.body.bread,
     toppings: req.body.toppings,
     condiments: req.body.condiments,
-    status: req.body.status
+    status: req.body.status,
+    date: req.body.date,
   } )
   console.log("after the let newOrder")
   console.log("newOrder = "+ newOrder)
