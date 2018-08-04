@@ -121,29 +121,29 @@ app.get('/logout', function(req, res) {
 
 /////////////////////////////////////////////// VUI Start
 
-      function get_one(sessionVar,orderNum, req,res,next){
-        console.log("in get_one")
-        ActiveOrder.find({status:"Active"})
-          .exec()
-          .then((activeOrder)=>{
-            console.log("in WS.find")
-            var orderID = activeOrder[orderNum-1]._id
-            ActiveOrder.updateOne({_id:orderID},{$set:{status:"done"}})
-                 .exec()
-                 .then(()=>{
-                  res.redirect('/inProgress'),
-                  res.locals.output_string="Order sent to pick up";
-                  next();
-                })
-                 .catch((error)=>{res.send(error)})
-            //there was a removed } here
-          })
-          .catch((error)=>{
-            console.log(error.message);
-            res.locals.output_string = "There was an error!";
-            next();
-          })
-      }
+  function get_one(sessionVar,orderNum, req,res,next){
+    console.log("in get_one")
+    ActiveOrder.find({status:"Active"})
+      .exec()
+      .then(()=>{
+        console.log("in WS.find")
+        var orderID = activeOrder[orderNum-1]._id
+        ActiveOrder.updateOne({_id:orderID},{$set:{status:"done"}})
+             .exec()
+             .then(()=>{
+               res.redirect('/inProgress'),
+               res.locals.output_string="Order sent to pick up";
+               next();
+             })
+             .catch((error)=>{res.send(error)})
+        //there was a removed } here
+      })
+      .catch((error)=>{
+      console.log(error.message);
+      res.locals.output_string = "There was an error!";
+        next();
+      })
+  }
 
   let sessionVars=[];
   function process_request(req, res, next){
