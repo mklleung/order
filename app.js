@@ -125,7 +125,19 @@ function count_activeOrders(session, req, res, next){
   ActiveOrder.find( {status:"Active"} )
     .exec()
     .then( ( activeOrder ) => {
-      res.locals.output_string="There are "+ activeOrder.length + " active orders.";
+      res.locals.output_string= "Number of Active Orders: "+ activeOrder.length;
+      next();
+    } )
+    .catch( ( error ) => {
+      console.log( error.message );
+      return [];
+    } )
+}
+function count_PickUpOrders(session, req, res, next){
+  ActiveOrder.find( {status:"done"} )
+    .exec()
+    .then( ( activeOrder ) => {
+      res.locals.output_string= "Number of Ready Pick Up Orders: "+ activeOrder.length;
       next();
     } )
     .catch( ( error ) => {
@@ -144,6 +156,9 @@ function count_activeOrders(session, req, res, next){
     if(req.body.queryResult.intent.displayName == "count_activeOrders"){
       console.log("In count_activeOrders")
       count_activeOrders(sessionVar, req, res, next);
+    } (req.body.queryResult.intent.displayName == "count_PickUpOrders"){
+      console.log("In count_activeOrders")
+      count_PickUpOrders(sessionVar, req, res, next);
     } else {
       res.locals.output_string = "oh no!";
       next();
