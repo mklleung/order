@@ -156,8 +156,8 @@ function count_PickUpOrders(session, req, res, next){
     if(req.body.queryResult.intent.displayName == "count_activeOrders"){
       console.log("In count_activeOrders")
       count_activeOrders(sessionVar, req, res, next);
-    } (req.body.queryResult.intent.displayName == "count_PickUpOrders"){
-      console.log("In count_activeOrders")
+    } else if (req.body.queryResult.intent.displayName == "count_PickUpOrders"){
+      console.log("In count_PickUpOrders")
       count_PickUpOrders(sessionVar, req, res, next);
     } else {
       res.locals.output_string = "oh no!";
