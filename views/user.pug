@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  .container.deisBlue
+    br
+    h1.white #{user.googlename}
+    ul.white
+      li
+        | email: #{user.googleemail}
+    hr
+    h2.white Previous Orders
+    ol.white
+      each m in activeOrder
+        li
+          table
+            tr
+              th #{m.date}
+              th #{m.time}
+              th #{m.customer}
+              th #{m.email}
+              th #{m.sandwich}
+              th #{m.hotdog}
+              th #{m.bread}
+              th #{m.toppings}
+              th #{m.condiments}
+      br
+    hr
+    br

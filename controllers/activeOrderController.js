@@ -156,7 +156,24 @@ exports.saveActiveOrder = ( req, res ) => {
     } );
 };
 
-
+exports.attachUserCompletedOrder = ( req, res, next ) => {
+  console.log('in attachUserCompletedOrder')
+  ActiveOrder.find( {email:res.locals.user.googleemail} )
+    .exec()
+    .then( ( activeOrder ) => {
+      console.log('gmail='+res.locals.user.googleemail)
+      console.log(activeOrder)
+      res.locals.activeOrder = activeOrder
+      next()
+    } )
+    .catch( ( error ) => {
+      console.log( error.message );
+      return [];
+    } )
+    .then( () => {
+      console.log( 'attachUserCompletedOrder promise complete' );
+    } );
+};
 /*
 
 

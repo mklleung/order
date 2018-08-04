@@ -10,12 +10,14 @@ const
   bodyParser = require("body-parser"),
 
   indexRouter = require('./routes/index');
-  usersRouter = require('./routes/users');
+  //usersRouter = require('./routes/users');
   thankyouRouter = require('./routes/thankyou');
   ordersRouter = require('./routes/orders');
   logInController = require('./controllers/logInController');
   activeOrderController = require('./controllers/activeOrderController');
-  const ActiveOrder = require( './models/ActiveOrder' );
+  usersController = require('./controllers/usersController'),
+  User = require( './models/User' ),
+  ActiveOrder = require( './models/ActiveOrder' );
 
 
   var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
@@ -51,8 +53,18 @@ app.use(passport.session());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req,res,next) => {
+  res.locals.loggedIn = false
+  if (req.isAuthenticated()){
+    console.log("user has been Authenticated")
+    res.locals.user = req.user
+    res.locals.loggedIn = true
+  }
+  next()
+})
+
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+//app.use('/users', usersRouter);
 app.use('/thankyou', thankyouRouter);
 app.use('/orders', ordersRouter);
 
@@ -88,22 +100,6 @@ app.post('/moveOrderPickUp',activeOrderController.moveOrderPickUp );
 app.post('/completeOrder',activeOrderController.completeOrder );
 app.post('/searchOrder',activeOrderController.searchOrder );
 
-app.use((req,res,next) => {
-  res.locals.loggedIn = false
-  if (req.isAuthenticated()){
-    console.log("user has been Authenticated")
-    res.locals.user = req.user
-    res.locals.loggedIn = true
-    console.log("Thjis is the thing:" + res.locals.loggedIn)
-    if (req.user) {
-      if (req.user.googleemail=='michaelleung360@gmail.com') {
-        console.log("admin has logged in")
-        res.locals.status='ADMIN'
-      }
-    }
-  }
-  next();
-})
 
 app.get('/loginerror', function(req,res){
   res.render('loginerror',{})
@@ -118,6 +114,13 @@ app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
     });
+
+app.get('/users',usersController.getAllUsers)
+app.get('/users/:id',
+        usersController.attachUser,
+        activeOrderController.attachUserCompletedOrder,
+        usersController.getUser)
+app.get('layout',usersController.getAllUsers)
 
 /////////////////////////////////////////////// VUI Start
 

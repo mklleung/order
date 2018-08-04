@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  .container.blueBC
+    br
+    h1.white Users
+
+    ul.white
+      each u in users
+        li
+          a(href="/users/"+u._id) #{u.googleemail}
+    br

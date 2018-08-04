@@ -21,8 +21,11 @@ html(lang="en")
       a(href="/completedOrders") All Completed Orders
       a(href="/search") Search Orders
       a(href='/orderNumber') Thank You
-      a(href='/logout') Log Out
-      a(href='/logIns') Log In
+      if loggedIn
+        a(href="/users/"+user._id) Your Page
+        a(href='/logout') Log Out
+      else
+        a(href='/logIns') Log In
       br
       br
       br
