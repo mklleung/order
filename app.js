@@ -122,7 +122,7 @@ app.get('/logout', function(req, res) {
 /////////////////////////////////////////////// VUI Start
 
 function count_activeOrders(session, req, res, next){
-  Workout.find( {status:"Active"} )
+  ActiveOrder.find( {status:"Active"} )
     .exec()
     .then( ( activeOrder ) => {
       res.locals.output_string="There are "+ activeOrder.length + " active orders.";
