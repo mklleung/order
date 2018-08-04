@@ -12,17 +12,16 @@ block content
     ol.white
       each m in activeOrder
         li
+          e #{m.date} | #{m.time}
+          br
           table
             tr
-              th #{m.date}
-              th #{m.time}
-              th #{m.customer}
-              th #{m.email}
               th #{m.sandwich}
               th #{m.hotdog}
               th #{m.bread}
               th #{m.toppings}
               th #{m.condiments}
+          br
       br
     hr
     br
