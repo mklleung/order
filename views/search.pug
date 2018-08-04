@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  body.bc
+  .container.deisBlue
+    br
+    h1.fontCenter.white.bold Louis' Deli
+    p.fontCenter.white Online order form for students
+    p.fontCenter.white *Orders are made first come first serve
+    br
+  .container
+    br
+    br
+  .container.deisBlue
+    br
+    h1.white.fontCenter Search Completed Orders by Date
+    br
+  .container
+    br
+    br
+    h2.underline Search By Date
+    form(method="post" action="searchOrder")
+      .container.column
+        input(type="text" name="searchDate" placeholder='08/02/2018')
+        br
+        br
+      input(type="submit")
+    br
+    br
+
+  script.
+    var date = new Date();
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
+    var today = month + "/" + day + "/" + year;
+    document.getElementById("theDate").value = today;
+
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var time = hour + ":" + minute;
+    if (hour < 10) hour = "0" + hour;
+    if (minute < 10) minute = "0" + minute;
+    document.getElementById("theTime").value = time;

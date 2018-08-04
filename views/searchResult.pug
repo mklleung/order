@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  body.bc
+  .container.deisBlue
+    br
+    h1.fontCenter.white.bold Louis' Deli
+    p.fontCenter.white Online order form for students
+    p.fontCenter.white *Orders are made first come first serve
+    br
+  br
+  br
+  .container.deisBlue
+    br
+    h1.fontCenter.white.bold.underline Search Results
+    br
+    ol.white
+      each m in activeOrder
+        li
+          table
+            tr
+              th #{m.date}
+              th #{m.time}
+              th #{m.customer}
+              th #{m.email}
+              th #{m.sandwich}
+              th #{m.hotdog}
+              th #{m.bread}
+              th #{m.toppings}
+              th #{m.condiments}
+            br
+          br

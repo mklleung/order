@@ -60,6 +60,26 @@ exports.terminatedOrders = ( req, res ) => {
       console.log( 'terminatedOrders promise complete' );
     } );
 };
+//This gets all the orders under a certain searched date
+exports.searchOrder = ( req, res ) => {
+  console.log('in searchOrders')
+  let searchDate = req.body.searchDate
+  console.log(searchDate)
+  ActiveOrder.find( {date:searchDate} )
+    .exec()
+    .then( ( activeOrder ) => {
+      res.render( 'searchResult', {
+        activeOrder: activeOrder
+      } );
+    } )
+    .catch( ( error ) => {
+      console.log( error.message );
+      return [];
+    } )
+    .then( () => {
+      console.log( 'searchOrders promise complete' );
+    } );
+};
 
 exports.moveOrderPickUp = (req, res) => {
   console.log("in moveOrderPickUp")

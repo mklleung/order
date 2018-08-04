@@ -75,9 +75,15 @@ app.get('/orderForm', function(req, res) {
             user : req.user
         });
     });
+app.get('/search',
+    (req, res) => {
+        res.render('search')
+      });
+      
 app.post('/saveActiveOrder',activeOrderController.saveActiveOrder );
 app.post('/moveOrderPickUp',activeOrderController.moveOrderPickUp );
 app.post('/completeOrder',activeOrderController.completeOrder );
+app.post('/searchOrder',activeOrderController.searchOrder );
 
 app.use((req,res,next) => {
   res.locals.loggedIn = false
