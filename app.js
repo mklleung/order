@@ -4,9 +4,10 @@ const
   path = require('path');
   cookieParser = require('cookie-parser');
   logger = require('morgan');
+  util = require("util"),
   session = require("express-session"),
+  flash = require('connect-flash'),
   bodyParser = require("body-parser"),
-  flash = require('connect-flash')
 
   indexRouter = require('./routes/index');
   usersRouter = require('./routes/users');
@@ -14,6 +15,8 @@ const
   ordersRouter = require('./routes/orders');
   logInController = require('./controllers/logInController');
   activeOrderController = require('./controllers/activeOrderController');
+  const ActiveOrder = require( './models/ActiveOrder' );
+
 
   var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
@@ -79,7 +82,7 @@ app.get('/search',
     (req, res) => {
         res.render('search')
       });
-      
+
 app.post('/saveActiveOrder',activeOrderController.saveActiveOrder );
 app.post('/moveOrderPickUp',activeOrderController.moveOrderPickUp );
 app.post('/completeOrder',activeOrderController.completeOrder );
@@ -115,6 +118,65 @@ app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
     });
+
+/////////////////////////////////////////////// VUI Start
+
+      function get_one(sessionVar,orderNum, req,res,next){
+        console.log("in get_one")
+        ActiveOrder.find({status:"Active"})
+          .exec()
+          .then((activeOrder)=>{
+            console.log("in WS.find")
+            var orderID = activeOrder[orderNum-1]._id
+            ActiveOrder.updateOne({_id:orderID},{$set:{status:"done"}})
+                 .exec()
+                 .then(()=>{
+                  res.redirect('/inProgress'),
+                  res.locals.output_string="Order sent to pick up";
+                  next();
+                })
+                 .catch((error)=>{res.send(error)})
+            //there was a removed } here
+          })
+          .catch((error)=>{
+            console.log(error.message);
+            res.locals.output_string = "There was an error!";
+            next();
+          })
+      }
+
+  let sessionVars=[];
+  function process_request(req, res, next){
+    res.locals.output_string = "there was an error";
+    console.log("in the processing")
+    sessionVars[req.body.sessions]= sessionVars[req.body.sessions] || {};
+    let sessionVar = sessionVars[req.body.sessions];
+    //This is intent allows the chefs to say "order # completed" and be sent to the pick up screen
+    if(req.body.queryResult.intent.displayName == "sendToPickUP"){
+      var orderNum = req.body.queryResult.parameters["number-integer"];
+      get_one(sessionVar, orderNum, req, res, next);
+    } else {
+      res.locals.output_string = "oh no!";
+      next();
+    }
+  };
+
+
+function replyToDiaf(req, res, next){
+  console.dir(req.body)
+  return res.json({
+      "fulfillmentMessages": [],
+      "fulfillmentText": res.locals.output_string,
+      "payload":{"slack":{"text":res.locals.output_string}},
+      "outputContexts": [],
+      "source": "Text Source",
+      "followupEventInput":{}
+    });
+
+}
+
+app.post('/hook', process_request, replyToDiaf);
+/////////////////////////////////////////////// VUI End
 
 
     // =====================================
