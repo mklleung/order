@@ -153,6 +153,7 @@ app.get('/logout', function(req, res) {
     let sessionVar = sessionVars[req.body.sessions];
     //This is intent allows the chefs to say "order # completed" and be sent to the pick up screen
     if(req.body.queryResult.intent.displayName == "sendToPickUP"){
+      console.log("In sendToPickUP")
       var orderNum = req.body.queryResult.parameters["number-integer"];
       get_one(sessionVar, orderNum, req, res, next);
     } else {
