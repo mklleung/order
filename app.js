@@ -121,29 +121,18 @@ app.get('/logout', function(req, res) {
 
 /////////////////////////////////////////////// VUI Start
 
-  function get_one(sessionVar,orderNum, req,res,next){
-    console.log("in get_one")
-    ActiveOrder.find({status:"Active"})
-      .exec()
-      .then(()=>{
-        console.log("in WS.find")
-        var orderID = activeOrder[orderNum-1]._id
-        ActiveOrder.updateOne({_id:orderID},{$set:{status:"done"}})
-             .exec()
-             .then(()=>{
-               res.redirect('/inProgress'),
-               res.locals.output_string="Order sent to pick up";
-               next();
-             })
-             .catch((error)=>{res.send(error)})
-        //there was a removed } here
-      })
-      .catch((error)=>{
-      console.log(error.message);
-      res.locals.output_string = "There was an error!";
-        next();
-      })
-  }
+function count_activeOrders(session, req, res, next){
+  Workout.find( {status:"Active"} )
+    .exec()
+    .then( ( activeOrder ) => {
+      res.locals.output_string="There are "+ activeOrder.length + " active orders.";
+      next();
+    } )
+    .catch( ( error ) => {
+      console.log( error.message );
+      return [];
+    } )
+}
 
   let sessionVars=[];
   function process_request(req, res, next){
@@ -152,10 +141,10 @@ app.get('/logout', function(req, res) {
     sessionVars[req.body.sessions]= sessionVars[req.body.sessions] || {};
     let sessionVar = sessionVars[req.body.sessions];
     //This is intent allows the chefs to say "order # completed" and be sent to the pick up screen
-    if(req.body.queryResult.intent.displayName == "sendToPickUP"){
-      console.log("In sendToPickUP")
+    if(req.body.queryResult.intent.displayName == "count_activeOrders"){
+      console.log("In count_activeOrders")
       var orderNum = req.body.queryResult.parameters["number-integer"];
-      get_one(sessionVar, orderNum, req, res, next);
+      count_activeOrders(sessionVar, req, res, next);
     } else {
       res.locals.output_string = "oh no!";
       next();
