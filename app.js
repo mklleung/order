@@ -143,7 +143,6 @@ function count_activeOrders(session, req, res, next){
     //This is intent allows the chefs to say "order # completed" and be sent to the pick up screen
     if(req.body.queryResult.intent.displayName == "count_activeOrders"){
       console.log("In count_activeOrders")
-      var orderNum = req.body.queryResult.parameters["number-integer"];
       count_activeOrders(sessionVar, req, res, next);
     } else {
       res.locals.output_string = "oh no!";
