@@ -125,7 +125,7 @@ function count_activeOrders(session, req, res, next){
   ActiveOrder.find( {status:"Active"} )
     .exec()
     .then( ( activeOrder ) => {
-      res.locals.output_string= "Number of Active Orders: "+ activeOrder.length;
+      res.locals.output_string= "Number of active orders: "+ activeOrder.length;
       next();
     } )
     .catch( ( error ) => {
@@ -137,7 +137,7 @@ function count_PickUpOrders(session, req, res, next){
   ActiveOrder.find( {status:"done"} )
     .exec()
     .then( ( activeOrder ) => {
-      res.locals.output_string= "Number of Ready Pick Up Orders: "+ activeOrder.length;
+      res.locals.output_string= "Number of ready to pick up orders: "+ activeOrder.length;
       next();
     } )
     .catch( ( error ) => {
