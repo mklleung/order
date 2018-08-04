@@ -81,6 +81,28 @@ exports.searchOrder = ( req, res ) => {
     } );
 };
 
+//This gets all the orders under a certain email
+exports.searchOrderEmail = ( req, res ) => {
+  console.log('in searchOrderEmail')
+  let searchEmail = req.body.searchEmail
+  console.log(searchEmail)
+  ActiveOrder.find( {email:searchEmail} )
+    .exec()
+    .then( ( activeOrder ) => {
+      res.render( 'searchResult', {
+        activeOrder: activeOrder
+      } );
+    } )
+    .catch( ( error ) => {
+      console.log( error.message );
+      return [];
+    } )
+    .then( () => {
+      console.log( 'searchOrders promise complete' );
+    } );
+};
+
+//This moves the orders from the chef screen to the pickup screen
 exports.moveOrderPickUp = (req, res) => {
   console.log("in moveOrderPickUp")
   let orderID = req.body.orderID
@@ -104,6 +126,7 @@ exports.moveOrderPickUp = (req, res) => {
    }
 };
 
+//This moves the orders from the pickUp screen to All Completed orders page
 exports.completeOrder = (req, res) => {
   console.log("in completeOrder")
   let orderID = req.body.orderID
@@ -127,7 +150,7 @@ exports.completeOrder = (req, res) => {
    }
 };
 
-
+//This saves the orders and sends it to the chef screen
 exports.saveActiveOrder = ( req, res ) => {
   console.log("in saveActiveOrder!")
   console.dir(req)
@@ -145,7 +168,6 @@ exports.saveActiveOrder = ( req, res ) => {
   } )
   console.log("after the let newOrder")
   console.log("newOrder = "+ newOrder)
-
   newOrder.save()
     .then( () => {
       console.log("redirecting to thank you")
@@ -156,6 +178,7 @@ exports.saveActiveOrder = ( req, res ) => {
     } );
 };
 
+//This attaches the orders that the user has ordered onto their page
 exports.attachUserCompletedOrder = ( req, res, next ) => {
   console.log('in attachUserCompletedOrder')
   ActiveOrder.find( {email:res.locals.user.googleemail} )

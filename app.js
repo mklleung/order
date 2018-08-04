@@ -99,6 +99,7 @@ app.post('/saveActiveOrder',activeOrderController.saveActiveOrder );
 app.post('/moveOrderPickUp',activeOrderController.moveOrderPickUp );
 app.post('/completeOrder',activeOrderController.completeOrder );
 app.post('/searchOrder',activeOrderController.searchOrder );
+app.post('/searchOrderEmail',activeOrderController.searchOrderEmail );
 
 
 app.get('/loginerror', function(req,res){

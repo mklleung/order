@@ -26,7 +26,18 @@ block content
         br
       input(type="submit")
     br
+    hr
     br
+    h2.underline Search By Email
+    form(method="post" action="searchOrderEmail")
+      .container.column
+        input(type="text" name="searchEmail" placeholder='email@brandeis.edu')
+        br
+        br
+      input(type="submit")
+    br
+    br
+    hr
 
   script.
     var date = new Date();
