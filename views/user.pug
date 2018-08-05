@@ -7,6 +7,8 @@ block content
     ul.white
       li
         | email: #{user.googleemail}
+    //img(id='image', alt='Picture')
+    img(src='https://pikmail.herokuapp.com/mkleung@brandeis.edu?size=300', alt='Profile Picture')
     hr
     h2.white Previous Orders
     ol.white
@@ -25,3 +27,8 @@ block content
       br
     hr
     br
+  script.
+    var pic = "https://pikmail.herokuapp.com/"+ #{user.googleemail}+ "?size=100";
+    var pic2 = "https://pikmail.herokuapp.com/michaelleung360@gmail.com?size=100";
+    document.getElementById("userpic").value = pic;
+    document.getElementById("image").src = pic2;
